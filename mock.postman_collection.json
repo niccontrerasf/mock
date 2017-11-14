@@ -1,0 +1,104 @@
+{
+	"variables": [],
+	"info": {
+		"name": "mock",
+		"_postman_id": "19aeb7b7-30d4-4721-ddc6-db4d6a9862be",
+		"description": "api calls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "readAll()",
+			"request": {
+				"url": "localhost:3000/users",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "readAll() -> devuelve todos los registros de la tabla mock_data en el formato JSON:\n{\n  data:[\"registros\"],\n  success:true\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "readOne()",
+			"request": {
+				"url": "localhost:3000/users/10",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "readOne() -> devuelve un registro a partir del id ingresado\n\nlocalhost:3000/read/{id}"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteOne()",
+			"request": {
+				"url": "localhost:3000/users/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "deleteOne() -> elimina un registro a partir del id ingresado\nretorna success:true/false y numero de registros modificados\n\nlocalhost:3000/delete/{id}"
+			},
+			"response": []
+		},
+		{
+			"name": "login()",
+			"request": {
+				"url": "localhost:3000/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user\":\"ramiranda1\",\"pass\":\"144NBq\"}"
+				},
+				"description": "login() emula un login. Se debe enviar mediante el body tipo json los datos user y pass.\nretorna success:true si valores son encontrados y coinciden o\nretorna success:false de los contrario."
+			},
+			"response": []
+		},
+		{
+			"name": "create()",
+			"request": {
+				"url": "localhost:3000/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\":\"Raul\",\n\t\"last_name\":\"Ramirez\",\n\t\"email\":\"181@181.ip\",\n\t\"password\":\"sm2d23d3\",\n\t\"Username\":\"rramirez\"\n}"
+				},
+				"description": "create() recibe todo los parametros por body json inserta en la BD y retorna success y si insercion fue exitosa junto a su id."
+			},
+			"response": []
+		},
+		{
+			"name": "update()",
+			"request": {
+				"url": "localhost:3000/users/200",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\":\"Raul\",\n\t\"last_name\":\"Ramirez\",\n\t\"email\":\"181@181.soa\",\n\t\"password\":\"sm2d23d3\"\n}"
+				},
+				"description": "update() recibe todo los parametros por body json y modifica en la BD a partir del ID. Retorna success y si update fue exitoso."
+			},
+			"response": []
+		}
+	]
+}
