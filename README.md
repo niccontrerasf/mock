@@ -36,6 +36,8 @@ DELETE  /users          ##Elimina un usuario por id
 POST    /login          ##Se debe enviar por json raw
                         ##user, pass
 ```
+Adjunto link y collection en POSTMAN para pruebas (`mock.postman_collection.json`).
+https://www.getpostman.com/collections/5e7889c680c0c3a40f50
 
 ## Observaciones
 
