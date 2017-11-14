@@ -9,6 +9,9 @@ var table = 'mock_data';
 //validar si existe error en BD o query y retornar error o resulset
 function checkError(err,rows,cb){
     if(err){
+        //por seguridad se borra query
+        delete err.sql;
+        delete err.sqlMessage;
         return cb({"data":err,"success":false});
     }
     cb({"data":rows,"success":rows.length?true:false});
@@ -62,14 +65,44 @@ exports.create = (datos,cb)=>{
 
 exports.update = (datos,cb)=>{
     //solo inserta si vienen todos los parametros
-    if(datos.length == 6){
+    if(datos.length == 5){
         datos.unshift(table);//['nombre_tabla',....,id]
         conexion.pool.query("UPDATE ?? "+
-                            "SET first_name = ?, last_name = ?, email = ?, password = ?, Username = ? "+
+                            "SET first_name = ?, last_name = ?, email = ?, password = ? "+
                             "WHERE id = ?", datos, function (err, rows, fields) {
             checkError(err,rows,cb);
         });
     }
     else
         cb({"data":[],"success":false});
+}
+
+exports.existeId = (id,cb)=>{
+    var que = [table,+id];
+    conexion.pool.query("SELECT id FROM ?? WHERE id = ?", que, function (err, rows, fields) {
+        checkError(err,rows,cb);
+    });
+}
+
+exports.existeMail = (email,cb)=>{
+    var que = [table,email];
+    conexion.pool.query("SELECT id FROM ?? WHERE email = ?", que, function (err, rows, fields) {
+        checkError(err,rows,cb);
+    });
+}
+
+exports.existeUser = (Username,cb)=>{
+    var que = [table,Username];
+    conexion.pool.query("SELECT id FROM ?? WHERE Username = ?", que, function (err, rows, fields) {
+        checkError(err,rows,cb);
+    });
+}
+
+exports.existeMailoUser = (email,user,cb)=>{
+    var que = [table,email,user];
+    conexion.pool.query("SELECT id FROM ?? "+
+                        "WHERE email = ? "+
+                        "OR Username = ?", que, function (err, rows, fields) {
+        checkError(err,rows,cb);
+    });
 }
