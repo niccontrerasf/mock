@@ -31,7 +31,7 @@ POST    /users          ##crea un usuario se debe enviar por json raw los datos
 PUT     /users/{id}     ##Actualiza lso datos del usuario por id, se debe enviar por json raw los nuevos datos
                         ##first_name, last_name, email, password
                         
-DELETE  /users/{id}          ##Elimina un usuario por id
+DELETE  /users/{id}     ##Elimina un usuario por id
 
 POST    /login          ##Se debe enviar por json raw
                         ##user, pass
